@@ -10,6 +10,7 @@
 ## Project installation CMD
 
 ```bash
+$ yarn install
 $ npm install
 $ npm run build
 $ npm Start
