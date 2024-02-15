@@ -7,9 +7,10 @@
 - HTML
 - CSS
 
-## Road map of project
+## Project installation 
 
 ```bash
+$ npm install
 $ npm run build
 $ npm Start
 ```
