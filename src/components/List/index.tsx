@@ -15,7 +15,7 @@ type ListProps = {
 
 const List = ({ children, title, onDragEnd, name }: ListProps) => {
   return (
-    <div className="flex flex-col w-6/12">
+    <div className="md:flex md:flex-col md:w-6/12">
       <h2 className="text-2xl font-bold mb-2 mx-5">{title}</h2>
       <div className="">
         <Droppable droppableId={name}>

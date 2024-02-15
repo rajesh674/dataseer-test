@@ -94,8 +94,11 @@ const Incorporate = () => {
 
   const [items, setItems] = useState(itemsNormal);
   const { available, panding, assigned, complete } = items;
-  let localData = JSON.parse(localStorage.getItem('data') as 'string | null')
-  let updataavailable = localData === null ? [...available] : [...available,...localData];
+  //let localData = JSON.parse(localStorage.getItem('data') as 'string | null')
+  //let updataavailable = localData === null ? [...available] : [...available, ...localData];
+
+
+  console.log(items)
 
   const removeFromList = (list: any, index: any) => {
     const result = Array.from(list);
@@ -116,6 +119,7 @@ const Incorporate = () => {
     }
     const listCopy: any = { ...items };
     const sourceList = listCopy[result.source.droppableId];
+    console.log('sourceList',sourceList)
     const [removedElement, newSourceList] = removeFromList(
       sourceList,
       result.source.index
@@ -130,30 +134,31 @@ const Incorporate = () => {
     );
     setItems(listCopy);
   };
-  
+
 
 
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className="flex p-12">
+        <div className="md:flex p-12">
           {catgegory.map((el, i) => {
             let titleName = `${el.charAt(0).toUpperCase()}${el.slice(1)} Tasks`;
-            let data = el === 'available' ? updataavailable : el === 'panding' ? panding : el === 'assigned' ? assigned : complete
+            let data = el === 'available' ? available : el === 'panding' ? panding : el === 'assigned' ? assigned : complete;
             return <List key={i} title={titleName} onDragEnd={onDragEnd} name={el}>
               {data?.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id + ""} index={index}>
+                <Draggable key={index} draggableId={item.id + ""} index={index}>
+
                   {(
                     provided: DraggableProvided | any,
                     snapshot: DraggableStateSnapshot
                   ) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                      >
-                        <Card data={item} />
-                      </div>
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <Card data={item} />
+                    </div>
                   )}
                 </Draggable>
               ))}

@@ -7,7 +7,7 @@
 - HTML
 - CSS
 
-## Project installation 
+## Project installation CMD
 
 ```bash
 $ npm install
